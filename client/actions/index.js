@@ -1,19 +1,42 @@
-import { getFruits } from '../apis/fruits'
+// import { getFruits } from '../apis/fruits'
 
-export const SET_FRUITS = 'SET_FRUITS'
+// export const SET_FRUITS = 'SET_FRUITS'
 
-export function setFruits (fruits) {
+// export function setFruits (fruits) {
+//   return {
+//     type: SET_FRUITS,
+//     fruits
+//   }
+// }
+
+// // getFruits is the API that gets the fruits from the DB via the route, which is dispatched into the store (into the state: fruits) by setFruits
+// export function fetchFruits () {
+//   return dispatch => {
+//     return getFruits()
+//       .then(fruits => {
+//         dispatch(setFruits(fruits))
+//         return null
+//       })
+//   }
+// }
+
+import { getConcreteNounsAPI } from '../apis/concreteNouns'
+
+export const SET_NOUNS = 'SET_NOUNS'
+
+export function setNouns (concreteNouns) {
   return {
-    type: SET_FRUITS,
-    fruits
+    type: SET_NOUNS,
+    concreteNouns
   }
 }
 
-export function fetchFruits () {
+export function fetchNouns() {
+  console.log('fetchNouns is going')
   return dispatch => {
-    return getFruits()
-      .then(fruits => {
-        dispatch(setFruits(fruits))
+    return getConcreteNounsAPI()
+      .then(concreteNouns => {
+        dispatch(setNouns(concreteNouns))
         return null
       })
   }
