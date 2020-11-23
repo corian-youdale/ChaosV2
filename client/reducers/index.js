@@ -6,11 +6,15 @@
 //   fruits
 // })
 
-
 import { combineReducers } from 'redux'
 
+import depositQuantity from './depositQuantity'
+import depositType from './depositType'
 import concreteNouns from './concreteNouns'
 
 export default combineReducers({
   concreteNouns,
+  depositQuantity,
+  depositType,
+
 })

@@ -5,7 +5,7 @@ const db = require('../db/concreteNouns')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    console.log('route firing')
+    console.log('getNouns route firing')
   db.getConcreteNouns()
     .then(results => {
         console.log('route firing')
@@ -14,8 +14,23 @@ router.get('/', (req, res) => {
     })
     .catch(err => {
       console.log(err)
-      res.status(500).json({ message: 'Somthing went wrong' })
+      res.status(500).json({ message: 'Somthing went wrong with the GET route' })
     })
 })
+
+// write DB FUNC postConcreteNouns
+
+router.post('/', (req,res) => {
+  console.log('postNoun route firing')
+  db.postConcreteNouns()
+    .then(newNoun => {
+      res.json({newNoun})
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Somthing went wrong with the POST route' })
+    })
+})
+
 
 module.exports = router

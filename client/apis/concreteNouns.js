@@ -6,3 +6,14 @@ export function getConcreteNounsAPI () {
       return res.body.concreteNouns
     })
 }
+
+
+export function addConcreteNounsAPI (currentState) {
+  console.log('we got to the api with a post')
+  const newNoun = {
+    name: currentState.depositType
+  }
+  return request
+    .post('api/vi/concreteNouns').send(newNoun)
+    .then(response => response.body)
+}

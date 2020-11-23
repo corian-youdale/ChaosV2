@@ -23,6 +23,8 @@
 import { getConcreteNounsAPI } from '../apis/concreteNouns'
 
 export const SET_NOUNS = 'SET_NOUNS'
+export const SET_DEPOSIT_QUANTITY = 'SET_DEPOSIT_QUANTITY'
+export const SET_DEPOSIT_TYPE = 'SET_DEPOSIT_TYPE'
 
 export function setNouns (concreteNouns) {
   return {
@@ -32,12 +34,26 @@ export function setNouns (concreteNouns) {
 }
 
 export function fetchNouns() {
-  console.log('fetchNouns is going')
   return dispatch => {
     return getConcreteNounsAPI()
       .then(concreteNouns => {
         dispatch(setNouns(concreteNouns))
         return null
-      })
+    })
+  }
+}
+
+
+export function setDepositType(depositType){
+  return {
+    type: SET_DEPOSIT_TYPE,
+    depositType: depositType
+  }
+}
+
+export function setDepositQuantity(depositQuantity) {
+  return {
+    type: SET_DEPOSIT_QUANTITY,
+    depositQuantity: depositQuantity
   }
 }

@@ -39,6 +39,8 @@ import { connect } from 'react-redux'
 
 import { fetchNouns } from '../actions'
 
+import Converter from './Converter'
+
 export class App extends React.Component {
   state = {
     concreteNouns: []
@@ -51,20 +53,36 @@ export class App extends React.Component {
   render () {
     return (
       <div className='app'>
-        <h1>Fullstack Boilerplate - with concreteNouns!</h1>
-        <ul>
+        <div>
+          <img id="logo" src="/images/bocLogo.png"></img>
+        </div>
+        <h1>BANK OF CHAOS CURRENCY CONVERTER</h1>
+        <div className='converter-portion'>
+          <Converter />
+                  <br/><br/>
+          <label name="convertedQuantity">We Can Currently Offer You</label>
+            <input className="" id="convertedQuantity" type="text" size="2"/>
+          <label name="convertedType">Units of</label>
+            <input className="convertedType" id="convertedType" type="text"/>  
+        </div>
+                <br/>
+        <button className="button" value="reset" id="reset" >New Conversion</button>
+        
+        {/* <ul>
           {this.props.concreteNouns.map(concreteNouns => (
             <li key={concreteNouns}>{concreteNouns}</li>
           ))}
-        </ul>
-      </div>
+        </ul> */}
+       </div>
     )
   }
 }
 
 function mapStateToProps (globalState) {
   return {
-    concreteNouns: globalState.concreteNouns
+    concreteNouns: globalState.concreteNouns,
+    depositQuantity: globalState.depositQuantity,
+    depositType: globalState.depositType,
   }
 }
 
