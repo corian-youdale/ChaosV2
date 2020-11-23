@@ -14,6 +14,6 @@ export function addConcreteNounsAPI (currentState) {
     name: currentState.depositType
   }
   return request
-    .post('api/vi/concreteNouns').send(newNoun)
+    .post('api/v1/concreteNouns').send(newNoun)
     .then(response => response.body)
 }

@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req,res) => {
   console.log('postNoun route firing')
-  db.postConcreteNouns()
+  db.postConcreteNouns(req.body)
     .then(newNoun => {
       res.json({newNoun})
     })
