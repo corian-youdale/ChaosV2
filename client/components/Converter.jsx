@@ -1,41 +1,29 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+
 // import any routes from 'react-router-dom'
-
-
-import { setDepositQuantity } from '../actions/index'
-import { setDepositType } from '../actions/index'
-import { addConcreteNounsAPI } from '../apis/concreteNouns'
 
 class Converter extends React.Component {
     state = {
         depositType: '',
-        depositQuantity: ''   
+        depositQuantity: '',
+        // converterView: '',
+        resultView: ''
     }
 
 
-handleTypeChange = (e) => {
-    this.setState({
-        depositType: e.target.value
-    })
-}
+// handleTypeChange = (e) => {
+//     this.setState({
+//         depositType: e.target.value
+//     })
+// }
 
-handleQuantityChange = (e) => {
-    this.setState({
-        depositQuantity: e.target.value
-    })
-}
-
-
-handleClick = (e) => {
-    console.log(this.state)
-    e.preventDefault()
-    addConcreteNounsAPI(this.state)
-    this.props.dispatch(setDepositType(this.state.depositType))
-    this.props.dispatch(setDepositQuantity(this.state.depositQuantity))
-    // this.props.history.push('/home')
-}
+// handleQuantityChange = (e) => {
+//     this.setState({
+//         depositQuantity: e.target.value
+//     })
+// }
 
 render() {
     return (
@@ -45,7 +33,6 @@ render() {
             <label name='depositType'>Unit(s) Of</label> {/*make this have an s if quantity>1*/}
                 <input type="text" className="depositType" name="depositType" size="20" onChange={this.handleTypeChange} />
             <br/>
-                <button className="button" value="convert" id="convertButton" onClick={this.handleClick}>CONVERT</button>
         </div>
         )
     }   
