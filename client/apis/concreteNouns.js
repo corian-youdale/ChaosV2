@@ -13,7 +13,9 @@ export function addConcreteNounsAPI (currentState) {
   const newNoun = {
     name: currentState.depositType
   }
-  return request
-    .post('api/v1/concreteNouns').send(newNoun)
+  console.log(currentState.depositType)
+  console.log(newNoun)
+  console.log(newNoun.name)
+  return request.post('api/v1/concreteNouns').send(newNoun)
     .then(response => response.body)
 }
