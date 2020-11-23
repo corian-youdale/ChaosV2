@@ -1,33 +1,29 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-
-// import any routes from 'react-router-dom'
-
 class Converter extends React.Component {
     state = {
         depositType: '',
         depositQuantity: '',
-        // converterView: '',
         resultView: ''
     }
 
 
-// handleTypeChange = (e) => {
-//     this.setState({
-//         depositType: e.target.value
-//     })
-// }
+handleTypeChange = (e) => {
+    this.setState({
+        depositType: e.target.value
+    })
+}
 
-// handleQuantityChange = (e) => {
-//     this.setState({
-//         depositQuantity: e.target.value
-//     })
-// }
+handleQuantityChange = (e) => {
+    this.setState({
+        depositQuantity: e.target.value
+    })
+}
 
 render() {
     return (
-        <div className='converter'>
+        <div className=''>
             <label name='depositQuantity'>Find The Current Chaos Conversion for</label>
                 <input className="depositQuantity" type='number' name='depositQuantity' onChange={this.handleQuantityChange}/>
             <label name='depositType'>Unit(s) Of</label> {/*make this have an s if quantity>1*/}

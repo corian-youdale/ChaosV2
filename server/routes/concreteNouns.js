@@ -18,8 +18,6 @@ router.get('/', (req, res) => {
     })
 })
 
-// write DB FUNC postConcreteNouns
-
 router.post('/', (req,res) => {
   console.log('postNoun route firing')
   db.postConcreteNouns(req.body)
