@@ -1,41 +1,32 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-
 import Converter from './Converter'
-import Result from './Result'
 
-import { fetchNouns } from '../actions'
-
-// import { setDepositQuantity } from '../actions/index'
-// import { setDepositType } from '../actions/index'
-// import { addConcreteNounsAPI } from '../apis/concreteNouns'
-
-
+import { fetchNouns } from '../actions/index'
 
 export class App extends React.Component {
   state = {
     concreteNouns: [],
     depositType: '',
     depositQuantity: '',
-    converterView: true 
+    converterView: true,
   }
 
   componentDidMount () {
-    this.props.dispatch(fetchNouns())
+    this.props.dispatch(fetchNouns(this.state.concreteNouns))
   }
 
   render () {
     let converterState = this.state.converterView
+    let resultState = this.state.resultView
     return (
       <div className='app converter'>
         <div className='logo-container'>
           <img id="logo" src="/images/bocLogo.png"></img>
         </div>
           <h1>BANK OF CHAOS CURRENCY CONVERTER</h1>
-            {converterState ? <Converter /> : <Result /> }
-            {/* {converterState ? <button className="button" value="convert" id="convertButton" onClick={this.handleSubmit}>CONVERT</button> : 
-                     <button className="new-conversion-button" value="reset" id="reset" onClick={this.handleReset}>New Conversion</button>  } */}
+           <Converter />
 
        </div>
     )
@@ -47,6 +38,9 @@ function mapStateToProps (globalState) {
     concreteNouns: globalState.concreteNouns,
     depositQuantity: globalState.depositQuantity,
     depositType: globalState.depositType,
+    converterView: globalState.converterView,
+    resultView: globalState.resultView,
+
   }
 }
 
