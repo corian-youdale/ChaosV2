@@ -7,7 +7,6 @@ export function getConcreteNounsAPI () {
     })
 }
 
-
 export function addConcreteNounsAPI (currentState) {
   console.log('we got to the api with a post')
   const newNoun = {

@@ -92,5 +92,4 @@ function mapStateToProps (globalState) {
     }
   }
 
-
 export default connect(mapStateToProps)(Converter)
