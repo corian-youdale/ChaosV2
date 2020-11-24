@@ -7,7 +7,6 @@ import { setDepositQuantity } from '../actions/index'
 import { setDepositType } from '../actions/index'
 import { fetchNouns } from '../actions/index'
 
-
 class Converter extends React.Component {
     state = {
         concreteNouns: [],
@@ -16,11 +15,10 @@ class Converter extends React.Component {
         converterView: true,
         resultView: false
     }
-    componentDidMount () {
+componentDidMount () {
         this.props.dispatch(fetchNouns())
       }
     
-
 handleTypeChange = (e) => {
     this.setState({
         depositType: e.target.value
@@ -35,6 +33,11 @@ handleQuantityChange = (e) => {
 
 handleSubmit = (e) => {
     e.preventDefault()
+    this.setState({
+        depositType: this.props.depositType,
+        converterView: false,
+        resultView: true
+  })
     this.convertedQuantity = Math.floor(Math.random()*40 + 1)
     this.convertedQuantityInput = document.getElementById('convertedQuantity')
     this.convertedQuantityInput.value = this.convertedQuantity
@@ -44,17 +47,11 @@ handleSubmit = (e) => {
     this.props.dispatch(setDepositType(this.props.depositType))
     this.props.dispatch(setDepositQuantity(this.props.depositQuantity))
     addConcreteNounsAPI(this.state)
-        // console.log('got to set state')
-            this.setState({
-              depositType: this.props.depositType,
-              converterView: false,
-              resultView: true
-        })
-    }
+}
 
   handleReset = (e) => {
     e.preventDefault()
-    // console.log('handling reset')
+    // Make this re-render App rather than just reloading '/'
      window.location = '/' 
   }
 
@@ -62,41 +59,23 @@ render() {
 let converterState = this.state.converterView
     return (
         <div className=''>
-
-            {/* {converterState ? 
-            <div> */}
+            <div className={!converterState ? 'hidden' : ''}>
 
                 <label name='depositQuantity'>Find The Current Chaos Conversion for</label>
                     <input className="depositQuantity" type='number' name='depositQuantity' onChange={this.handleQuantityChange}/>
-                <label name='depositType'>Unit(s) Of</label> {/*make this have an s if quantity>1*/}
+                <label name='depositType'>Unit(s) Of</label>
                     <input type="text" className="depositType" name="depositType" size="20" onChange={this.handleTypeChange} />
-                <br/>
-
-            {/* </div> : */}
-
-             <div className=''>
+            </div>           
+            <div className={converterState ? 'hidden' : ''}>
              <label name="convertedQuantity">We Can Currently Offer You</label>
                  <input className="" id="convertedQuantity" type="text" size="2"/>
              <label name="convertedType">Unit(s) of</label>
                  <input className="convertedType" id="convertedType" type="text"/>  
-             <br/>
             </div>
-            
-            {/* } */}
-
-            {converterState ? <button className="button" value="convert" id="convertButton" onClick={this.handleSubmit}>CONVERT</button> :
-            <button className="new-conversion-button" value="reset" id="reset" onClick={this.handleReset}>New Conversion</button>  }
-            <br/>
-            <br/>
-
-             {/* <div className=''>
-                 <label name="convertedQuantity">We Can Currently Offer You</label>
-                     <input className="" id="convertedQuantity" type="text" size="2"/>
-                 <label name="convertedType">Unit(s) of</label>
-                     <input className="convertedType" id="convertedType" type="text"/>  
-                 <br/>
-             </div> */}
-
+            <div>  
+                {converterState ? <button className="button" value="convert" id="convertButton" onClick={this.handleSubmit}>CONVERT</button> :
+                <button className="new-conversion-button" value="reset" id="reset" onClick={this.handleReset}>New Conversion</button>}
+            </div>
         </div>
         )
     }   

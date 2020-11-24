@@ -18,8 +18,6 @@ export class App extends React.Component {
   }
 
   render () {
-    let converterState = this.state.converterView
-    let resultState = this.state.resultView
     return (
       <div className='app converter'>
         <div className='logo-container'>
